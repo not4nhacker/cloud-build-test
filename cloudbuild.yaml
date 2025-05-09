@@ -1,0 +1,18 @@
+steps:
+- name: 'alpine' # Using a very small, standard image
+  id: 'Simulate Attacker Activity'
+  entrypoint: 'sh' # Explicitly set the entrypoint to sh for alpine
+  args:
+  - '-c' # Command to execute
+  - |
+    echo "Build started by 'attacker simulation'..."
+    echo "Sleeping for 5 minutes (300 seconds) to simulate resource consumption."
+    sleep 300
+    echo "Sleep finished. Build step complete."
+
+# Optional: Set an overall timeout for the build.
+# Default is 60 minutes, so 10 minutes is plenty for this 5-minute sleep.
+timeout: '600s' # 10 minutes
+
+options:
+  logging: CLOUD_LOGGING_ONLY # Send logs directly to Cloud Logging
